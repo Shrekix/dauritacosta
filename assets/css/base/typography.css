@@ -1,0 +1,139 @@
+/* ===============================================
+   Sistema Tipográfico para Autoridade Médica
+   v2.3 - Fluid Typography + Legibilidade Aprimorada
+   =============================================== */
+
+   :root {
+    /* Sistema de Escala Fluida */
+    --text-base: clamp(1.6rem, 0.5vw + 1.4rem, 1.8rem);
+    --text-ratio: 1.25;
+    
+    /* Hierarquia Fluida */
+    --text-xs: clamp(1.2rem, 0.25vw + 1.1rem, 1.4rem);
+    --text-sm: clamp(1.4rem, 0.35vw + 1.3rem, 1.6rem);
+    --text-md: clamp(1.8rem, 0.7vw + 1.6rem, 2.1rem);
+    --text-lg: clamp(2.4rem, 1vw + 2.1rem, 3rem);
+    --text-xl: clamp(3rem, 1.5vw + 2.5rem, 4rem);
+    --text-xxl: clamp(3.8rem, 2vw + 3rem, 5rem);
+  
+    /* Fontes */
+    --font-primary: 'Montserrat', system-ui, sans-serif;
+    --font-secondary: 'Open Sans', var(--font-primary);
+    
+    /* Espaçamento */
+    --line-height-base: 1.6;
+    --line-height-tight: 1.2;
+  }
+  
+  /* Base Tipográfica */
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--text-base);
+    line-height: var(--line-height-base);
+    color: var(--azul-profissional);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Hierarquia de Cabeçalhos */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+    margin: 0 0 0.5em;
+    color: var(--azul-profissional);
+  }
+  
+  h1 {
+    font-size: var(--text-xxl);
+    letter-spacing: -0.03em;
+    max-width: 15ch;
+  }
+  
+  h2 {
+    font-size: var(--text-xl);
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: var(--text-lg);
+    color: var(--verde-saude);
+  }
+  
+  h4 {
+    font-size: var(--text-md);
+    font-weight: 600;
+  }
+  
+  /* Texto Especializado */
+  .text-gradient {
+    background: linear-gradient(
+      45deg,
+      var(--verde-saude) 25%,
+      var(--azul-profissional) 85%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+  
+  .text-lead {
+    font-size: var(--text-md);
+    line-height: 1.4;
+    color: hsl(213, 27%, 35%);
+    max-width: 65ch;
+  }
+  
+  .text-small {
+    font-size: var(--text-sm);
+    opacity: 0.9;
+  }
+  
+  /* Utilitários Responsivos */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      --text-xxl: clamp(2.8rem, 6vw, 3.5rem);
+      line-height: 1.1;
+    }
+    
+    h2 {
+      --text-xl: clamp(2.2rem, 5vw, 2.8rem);
+    }
+  }
+  
+  /* Acessibilidade */
+  @media (prefers-reduced-motion: reduce) {
+    .text-gradient {
+      background: var(--verde-saude);
+      -webkit-text-fill-color: initial;
+    }
+  }
+  
+  /* Tipografia para Dados Científicos */
+  .scientific-data {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+  
+  /* Impressão Profissional */
+  @media print {
+    body {
+      font-size: 12pt;
+      line-height: 1.4;
+      color: #000 !important;
+    }
+    
+    .text-gradient {
+      background: none;
+      color: #000 !important;
+    }
+    
+    .no-print {
+      display: none !important;
+    }
+  }

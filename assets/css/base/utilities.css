@@ -1,0 +1,172 @@
+/* ==============================================
+   Sistema de Utilitários para Conversão em Saúde
+   v3.2 - Mobile-First + Variáveis CSS
+   ============================================== */
+
+   :root {
+    /* Espaçamento Base */
+    --space-unit: 1rem;
+    --space-xxs: calc(var(--space-unit) * 0.25);
+    --space-xs: calc(var(--space-unit) * 0.5);
+    --space-sm: calc(var(--space-unit) * 0.75);
+    --space-md: var(--space-unit);
+    --space-lg: calc(var(--space-unit) * 2);
+    --space-xl: calc(var(--space-unit) * 3.25);
+    --space-xxl: calc(var(--space-unit) * 5);
+  
+    /* Cores */
+    --color-primary: #4CAF50;
+    --color-secondary: #2A3B4C;
+    --color-accent: #FF6B6B;
+    --color-light: #F8FAFC;
+    --color-dark: #1A2733;
+  }
+  
+  /* Layout */
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: var(--space-md);
+  }
+  
+  .stacked > * {
+    grid-area: 1 / 1;
+  }
+  
+  /* Espaçamento Responsivo */
+  .mb-section {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .px-container {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+  
+  /* Direcionais */
+  .mt-xxs { margin-top: var(--space-xxs) }
+  .mt-xs { margin-top: var(--space-xs) }
+  .mt-sm { margin-top: var(--space-sm) }
+  /* ... (criar para todas direções: mt, mb, ml, mr, pt, pb, pl, pr) */
+  
+  /* Efeitos Visuais */
+  .shadow-soft {
+    box-shadow: 0 4px 6px -1px rgba(42, 59, 76, 0.05);
+  }
+  
+  .shadow-hard {
+    box-shadow: 0 10px 15px -3px rgba(76, 175, 80, 0.15);
+  }
+  
+  .hover\:scale {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover\:scale:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Gradientes */
+  .bg-gradient-health {
+    background-image: linear-gradient(
+      135deg,
+      hsl(146, 63%, 49%) 0%,
+      hsl(210, 29%, 24%) 100%
+    );
+  }
+  
+  /* Formulários */
+  .input-health {
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    padding: var(--space-sm) var(--space-md);
+    transition: all 0.3s ease;
+  }
+  
+  .input-health:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  }
+  
+  .checkbox-health {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 4px;
+    accent-color: var(--color-primary);
+  }
+  
+  /* Animações */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in-up 0.6s ease-out both;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Responsivo */
+  @media (min-width: 768px) {
+    .md\:grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+    
+    .md\:order-last {
+      order: 2;
+    }
+  }
+  
+  /* Acessibilidade */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  /* Print */
+  @media print {
+    .print-hidden {
+      display: none !important;
+    }
+    
+    .print-text {
+      color: #000 !important;
+      font-size: 12pt !important;
+    }
+  }

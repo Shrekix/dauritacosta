@@ -1,0 +1,213 @@
+/* ==============================================
+   Sistema de Navegação para Autoridade Médica
+   v6.4 - Sticky + Acessibilidade Avançada
+   ============================================== */
+
+   :root {
+    /* Variáveis de Navegação */
+    --nav-height: 80px;
+    --nav-bg: rgba(255, 255, 255, 0.98);
+    --nav-shadow: 0 4px 30px rgba(42, 59, 76, 0.05);
+    --nav-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Navbar Principal */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    transition: var(--nav-transition);
+  }
+  
+  .navbar-scrolled {
+    box-shadow: var(--nav-shadow);
+    height: calc(var(--nav-height) - 10px);
+  }
+  
+  /* Container Interno */
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+  }
+  
+  /* Logo */
+  .navbar-logo {
+    width: 180px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .navbar-logo:hover {
+    opacity: 0.8;
+  }
+  
+  /* Menu Principal */
+  .nav-menu {
+    display: flex;
+    gap: 3.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .nav-link {
+    position: relative;
+    color: var(--color-secondary);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    transition: var(--nav-transition);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: inherit;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: calc(100% - 3.2rem);
+    left: 25%;
+  }
+  
+  /* Dropdown */
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 1rem);
+    left: 0;
+    background: white;
+    min-width: 240px;
+    border-radius: 12px;
+    box-shadow: var(--nav-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: 
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    transform: translateY(10px);
+  }
+  
+  .nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2.4rem;
+    color: var(--color-secondary);
+    transition: background 0.2s ease;
+  }
+  
+  .dropdown-link:hover {
+    background: var(--color-light);
+  }
+  
+  /* Botão CTA Especial */
+  .nav-cta {
+    background: var(--color-primary);
+    color: white !important;
+    padding: 0.8rem 2.4rem;
+    margin-left: 1.6rem;
+    border-radius: 50px;
+  }
+  
+  .nav-cta:hover {
+    background: hsl(146, 64%, 40%);
+    transform: translateY(-2px);
+  }
+  
+  /* Menu Mobile */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.8rem;
+    cursor: pointer;
+  }
+  
+  .mobile-menu-icon {
+    width: 32px;
+    height: 32px;
+    stroke: var(--color-secondary);
+  }
+  
+  /* Menu Mobile Aberto */
+  .mobile-menu {
+    position: fixed;
+    top: var(--nav-height);
+    right: -100%;
+    width: 100%;
+    max-width: 320px;
+    height: calc(100vh - var(--nav-height));
+    background: var(--nav-bg);
+    padding: 2.4rem;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+  }
+  
+  .mobile-menu.active {
+    right: 0;
+  }
+  
+  .mobile-menu .nav-link {
+    display: block;
+    padding: 1.2rem 0;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 1024px) {
+    .nav-menu {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+    }
+    
+    .nav-cta {
+      margin-left: 0;
+    }
+  }
+  
+  /* Acessibilidade */
+  .nav-link:focus-visible,
+  .dropdown-link:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  .nav-link[aria-current="page"] {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  
+  /* Scroll Behavior */
+  @media (prefers-reduced-motion: reduce) {
+    .navbar {
+      transition: none;
+    }
+    
+    .mobile-menu {
+      transition: none;
+    }
+  }

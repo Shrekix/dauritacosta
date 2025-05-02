@@ -1,0 +1,202 @@
+/* ==============================================
+   Stylesheet Principal - Dra. Daurita Costa
+   v10.2 - CSS Moderno + Performance Extrema
+   ============================================== */
+
+   @layer base, components, utilities;
+
+   /* Base Styles */
+   @layer base {
+     @import url('base/reset.css');
+     @import url('base/typography.css');
+     
+     :root {
+       /* Cores Oficiais */
+       --color-primary: hsl(146, 64%, 49%);
+       --color-secondary: hsl(210, 29%, 24%);
+       --color-accent: hsl(356, 100%, 67%);
+       --color-light: hsl(210, 20%, 98%);
+       --color-dark: hsl(210, 29%, 16%);
+   
+       /* Espaçamento Fluido */
+       --space-3xs: clamp(0.5rem, 0.5vw + 0.4rem, 0.75rem);
+       --space-2xs: clamp(0.75rem, 0.75vw + 0.5rem, 1rem);
+       --space-xs: clamp(1rem, 1vw + 0.75rem, 1.5rem);
+       --space-sm: clamp(1.5rem, 1.5vw + 1rem, 2rem);
+       --space-md: clamp(2rem, 2vw + 1.5rem, 3rem);
+       --space-lg: clamp(3rem, 3vw + 2rem, 4rem);
+       --space-xl: clamp(4rem, 4vw + 3rem, 6rem);
+   
+       /* Tipografia Fluida */
+       --text-base: clamp(1.6rem, 0.5vw + 1.4rem, 1.8rem);
+       --text-lg: clamp(2rem, 1vw + 1.5rem, 2.4rem);
+       --text-xl: clamp(2.4rem, 1.5vw + 2rem, 3.2rem);
+       --text-2xl: clamp(3rem, 2vw + 2.5rem, 4rem);
+     }
+   
+     body {
+       background-color: var(--color-light);
+       color: var(--color-secondary);
+       font-family: var(--font-secondary);
+       line-height: 1.6;
+       overflow-x: hidden;
+     }
+   }
+   
+   /* Componentes */
+   @layer components {
+     @import url('components/buttons.css');
+     @import url('components/cards.css');
+     @import url('components/navigation.css');
+   
+     .container {
+       width: min(1280px, 92%);
+       margin-inline: auto;
+       padding-inline: var(--space-sm);
+     }
+   
+     .section {
+       padding-block: var(--space-xl);
+     }
+   
+     /* Hero Section */
+     .hero {
+       position: relative;
+       padding-block: var(--space-xl);
+       margin-top: var(--nav-height);
+       background: linear-gradient(
+           to bottom right,
+           hsl(210 20% 98% / 0.96),
+           hsl(210 20% 98% / 0.98)
+         ),
+         url('../img/hero/bg-padrao.webp') center/cover;
+     }
+   
+     .hero-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+       gap: var(--space-lg);
+       align-items: center;
+     }
+   
+     /* Seção de Resultados */
+     .results-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+       gap: var(--space-md);
+       padding-block: var(--space-xl);
+     }
+   
+     /* Depoimentos */
+     .testimonials-carousel {
+       --gap: var(--space-md);
+       display: grid;
+       grid-auto-flow: column;
+       gap: var(--gap);
+       overflow-x: auto;
+       scroll-snap-type: x mandatory;
+       padding-bottom: var(--space-sm);
+     }
+   
+     .testimonials-carousel > * {
+       scroll-snap-align: start;
+       min-width: min(300px, 80vw);
+     }
+   
+     /* Seção Ebook */
+     .ebook-section {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+       gap: var(--space-xl);
+       align-items: center;
+     }
+   
+     .ebook-preview {
+       perspective: 1000px;
+       transform-style: preserve-3d;
+     }
+   
+     /* FAQ */
+     .faq-grid {
+       max-width: 800px;
+       margin-inline: auto;
+     }
+   
+     details.faq-item {
+       background: hsl(0 0% 100% / 0.6);
+       backdrop-filter: blur(5px);
+       border-radius: var(--space-3xs);
+       margin-bottom: var(--space-xs);
+     }
+   }
+   
+   /* Utilities */
+   @layer utilities {
+     .text-gradient {
+       background-image: linear-gradient(
+         45deg,
+         var(--color-primary),
+         var(--color-secondary)
+       );
+       background-clip: text;
+       -webkit-background-clip: text;
+       color: transparent;
+     }
+   
+     .shadow-primary {
+       box-shadow: 0 10px 15px -3px hsl(var(--color-primary) / 0.1);
+     }
+   
+     .animate-pulse {
+       animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+     }
+   
+     @keyframes pulse {
+       0%, 100% { opacity: 1 }
+       50% { opacity: 0.5 }
+     }
+   
+     .full-bleed {
+       width: 100vw;
+       margin-left: 50%;
+       transform: translateX(-50%);
+     }
+   }
+   
+   /* Media Queries */
+   @media (max-width: 768px) {
+     .hero {
+       text-align: center;
+       padding-block: var(--space-lg);
+     }
+   
+     .testimonials-carousel {
+       --gap: var(--space-sm);
+     }
+   }
+   
+   @media (prefers-reduced-motion: reduce) {
+     * {
+       animation: none !important;
+       transition: none !important;
+     }
+   }
+   
+   /* Print Styles */
+   @media print {
+     .navbar,
+     .footer,
+     .testimonials-carousel,
+     .btn {
+       display: none !important;
+     }
+   
+     .hero {
+       padding: var(--space-sm) !important;
+     }
+   
+     .text-gradient {
+       background-image: none !important;
+       color: var(--color-dark) !important;
+     }
+   }

@@ -1,0 +1,185 @@
+/* ==============================================
+   Sistema de Botões para Alta Conversão em Saúde
+   v4.1 - Efeitos Interativos + Microinterações
+   ============================================== */
+
+   :root {
+    /* Sistema de Botões */
+    --btn-radius: 50px;
+    --btn-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --btn-padding-x: 2.4rem;
+    --btn-padding-y: 1.2rem;
+  }
+  
+  /* Base do Botão */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    border: 2px solid transparent;
+    border-radius: var(--btn-radius);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: var(--btn-transition);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+  
+  /* Tamanhos */
+  .btn-sm {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+  }
+  
+  .btn-md {
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-size: 1.6rem;
+  }
+  
+  .btn-lg {
+    padding: calc(var(--btn-padding-y) * 1.5) calc(var(--btn-padding-x) * 1.5);
+    font-size: 1.8rem;
+  }
+  
+  /* Variantes Primárias */
+  .btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    position: relative;
+  }
+  
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, 
+      rgba(255,255,255,0.25) 0%, 
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(76, 175, 80, 0.3);
+  }
+  
+  .btn-primary:hover::after {
+    opacity: 1;
+  }
+  
+  .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px -3px rgba(76, 175, 80, 0.2);
+  }
+  
+  /* Variante Secundária */
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border-color: currentColor;
+  }
+  
+  .btn-secondary:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  /* Estado Loading */
+  .btn-loading {
+    pointer-events: none;
+    position: relative;
+    color: transparent !important;
+  }
+  
+  .btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.5);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: btn-spin 0.8s linear infinite;
+  }
+  
+  @keyframes btn-spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Botão com Ícone */
+  .btn-icon {
+    padding-right: 3.2rem;
+  }
+  
+  .btn-icon svg {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-icon:hover svg {
+    transform: translateX(3px);
+  }
+  
+  /* Efeito de Onda */
+  .btn-ripple {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .btn-ripple::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10%);
+    transform: scale(10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+  }
+  
+  .btn-ripple:active::after {
+    transform: scale(0);
+    opacity: 0.3;
+  }
+  
+  /* Responsivo Mobile */
+  @media (max-width: 768px) {
+    .btn {
+      width: 100%;
+    }
+    
+    .btn-icon {
+      padding-right: 2.8rem;
+    }
+    
+    .btn-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  /* Acessibilidade */
+  .btn:focus-visible {
+    outline: 3px solid rgba(76, 175, 80, 0.4);
+    outline-offset: 2px;
+  }
+  
+  /* Desabilitado */
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+  }

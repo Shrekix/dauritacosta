@@ -1,0 +1,110 @@
+/* ====================================================
+   Reset Moderno para Landing Pages de Alta Conversão
+   v2.1 - Otimizado para Saúde/Emagrecimento
+   ==================================================== */
+
+/* Reset Estratégico de Elementos-Chave */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.5;
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+  
+  body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Elementos Semânticos */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  
+  /* Normalização de Listas */
+  ol, ul {
+    list-style: none;
+  }
+  
+  /* Elementos Interativos */
+  button, input, select, textarea {
+    font-family: inherit;
+    background: transparent;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  /* Imagens Responsivas */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Tipografia Consistente */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  /* Reset Específico para Componentes */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Animações Performance */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Normalização de Formulários */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+  
+  /* Específico para Saúde */
+  :root {
+    --verde-saude: #4CAF50;
+    --azul-profissional: #2A3B4C;
+  }
+  
+  /* Ajuste para Elementos de Autoridade */
+  .foto-autoridade {
+    border: 3px solid var(--verde-saude);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1);
+  }
+  
+  /* Garantia Animada */
+  @keyframes garantia-pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(1.02); opacity: 1; }
+  }
+  
+  .garantia-section {
+    animation: garantia-pulse 1.5s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+  }
